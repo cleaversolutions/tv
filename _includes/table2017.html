@@ -1,0 +1,136 @@
+<h3>All times are Eastern Standard Time</h3>
+
+  <table>
+  <tr>
+  	<th>Series</th>
+  	<th>Location</th>
+  	<th>Date</th>
+  	<th>Time</th>
+  	<th>Channel</th>
+  </tr>
+{% assign sorted_races = (site.data.2017 | sort: 'date') %}
+{% for race in sorted_races %}
+{% capture post_date %}{{ page.date | date: "%j" | plus:0 }}{% endcapture %}
+{% capture race_date %}{{ race.date | date: "%j" | plus: 0 }}{% endcapture %}
+{% capture next_week %}{{ page.date | date: "%j" | plus: 7 }}{% endcapture %}
+
+{% if race_date >= post_date and race_date <= next_week %}
+  <tr>
+  	<td>{{ race.name }}</td>
+  	<td>{{ race.location }}</td>
+  	<td>{{ race.date | date: "%A, %B %-d" }}</td>
+  	<td>{{ race.date | date: "%l:%M%P" }}</td> 
+  	<td>{{ race.channel }}<br /><small>{{ race.status }}</small></td>
+  </tr>
+{% endif %}
+{% endfor %}
+</table>
+
+
+<hr>
+
+  <table>
+{% capture post_date %}{{ page.date | date: "%s" | plus:0 }}{% endcapture %}
+{% capture post_date1 %}{{ page.date | date: "%s" | plus:86400 }}{% endcapture %}
+{% capture post_date2 %}{{ page.date | date: "%s" | plus:172800 }}{% endcapture %}
+{% capture post_date3 %}{{ page.date | date: "%s" | plus:259200 }}{% endcapture %}
+{% capture post_date4 %}{{ page.date | date: "%s" | plus:345600 }}{% endcapture %}
+{% capture post_date5 %}{{ page.date | date: "%s" | plus:432000 }}{% endcapture %}
+{% capture post_date6 %}{{ page.date | date: "%s" | plus:518400 }}{% endcapture %}					
+{% capture next_week %}{{ page.date | date: "%s" | plus: 604800 }}{% endcapture %}
+{% assign sorted_races = (site.data.2017 | sort: 'date') %}
+
+
+<!-- START LOOP -->
+	<tr>
+		<td colspan="4" align="center"><h3>{{ post_date | date: "%A, %B %-d, %Y" }}</h3></td>
+	</tr>
+
+{% for race in sorted_races %}
+{% capture race_date %}{{ race.date | date: "%s" | plus: 0 }}{% endcapture %}
+
+{% if race_date >= post_date and race_date < post_date1 %}
+  <tr>
+  	<td>{{ race.name }}</td>
+  	<td>{{ race.location }}</td>
+  	<td>{{ race.date | date: "%l:%M%P" }}</td> 
+  	<td>{{ race.channel }}<br /><small>{{ race.status }}</small></td>
+  </tr>
+{% endif %}
+{% endfor %}
+<!-- END LOOP -->
+
+<!-- START LOOP -->
+	<tr>
+		<td colspan="4" align="center"><h3>{{ post_date1 | date: "%A, %B %-d, %Y" }}</h3></td>
+	</tr>
+
+{% for race in sorted_races %}
+{% capture race_date %}{{ race.date | date: "%s" | plus: 0 }}{% endcapture %}
+
+{% if race_date >= post_date1 and race_date < post_date2 %}
+  <tr>
+  	<td>{{ race.name }}</td>
+  	<td>{{ race.location }}</td>
+  	<td>{{ race.date | date: "%l:%M%P" }}</td> 
+  	<td>{{ race.channel }}<br /><small>{{ race.status }}</small></td>
+  </tr>
+{% endif %}
+{% endfor %}
+<!-- END LOOP -->
+
+<!-- START LOOP -->
+	<tr>
+		<td colspan="4" align="center"><h3>{{ post_date2 | date: "%A, %B %-d, %Y" }}</h3></td>
+	</tr>
+
+{% for race in sorted_races %}
+{% capture race_date %}{{ race.date | date: "%s" | plus: 0 }}{% endcapture %}
+
+{% if race_date >= post_date2 and race_date < post_date3 %}
+  <tr>
+  	<td>{{ race.name }}</td>
+  	<td>{{ race.location }}</td>
+  	<td>{{ race.date | date: "%l:%M%P" }}</td> 
+  	<td>{{ race.channel }}<br /><small>{{ race.status }}</small></td>
+  </tr>
+{% endif %}
+{% endfor %}
+<!-- END LOOP -->
+
+<!-- START LOOP -->
+	<tr>
+		<td colspan="4" align="center"><h3>{{ post_date3 | date: "%A, %B %-d, %Y" }}</h3></td>
+	</tr>
+
+{% for race in sorted_races %}
+{% capture race_date %}{{ race.date | date: "%s" | plus: 0 }}{% endcapture %}
+
+{% if race_date >= post_date3 and race_date < post_date4 %}
+  <tr>
+  	<td>{{ race.name }}</td>
+  	<td>{{ race.location }}</td>
+  	<td>{{ race.date | date: "%l:%M%P" }}</td> 
+  	<td>{{ race.channel }}<br /><small>{{ race.status }}</small></td>
+  </tr>
+{% endif %}
+{% endfor %}
+<!-- END LOOP -->
+
+
+
+
+</table>
+
+<p>{{'now' | date: "%s" | minus : 604800 | date: "%b %d, %Y %I:%M %p -0500" | uri_encode | replace:"+","%20"}}</p>
+<p>{{'now' | date: "%s" | date: "%b %d, %Y %I:%M %p -0500" | uri_encode | replace:"+","%20"}}</p>
+<p>{{'now' | date: "%s" | plus : 86400 | date: "%b %d, %Y %I:%M %p -0500" | uri_encode | replace:"+","%20"}}</p>
+
+<p>{{ post_date | date_to_long_string }}</p>
+<p>{{ post_date1 | date_to_long_string }}</p>
+<p>{{ post_date2 | date_to_long_string }}</p>
+<p>{{ post_date3 | date_to_long_string }}</p>
+<p>{{ post_date4 | date_to_long_string }}</p>
+<p>{{ post_date5 | date_to_long_string }}</p>
+<p>{{ post_date6 | date_to_long_string }}</p>
+
